@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "infos",
+  "info": {
+    "singularName": "info",
+    "pluralName": "infos",
+    "displayName": "info",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "content": {
+      "type": "dynamiczone",
+      "components": [
+        "content.content-main"
+      ]
+    },
+    "aside": {
+      "type": "dynamiczone",
+      "components": [
+        "aside.aside-main"
+      ]
+    },
+    "header": {
+      "type": "dynamiczone",
+      "components": [
+        "header.header-main"
+      ]
+    }
+  }
+}
