@@ -369,28 +369,32 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiInfoInfo extends Struct.CollectionTypeSchema {
-  collectionName: 'infos';
+export interface ApiArtigoArtigo extends Struct.CollectionTypeSchema {
+  collectionName: 'artigos';
   info: {
-    description: '';
-    displayName: 'info';
-    pluralName: 'infos';
-    singularName: 'info';
+    displayName: 'artigos';
+    pluralName: 'artigos';
+    singularName: 'artigo';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    aside: Schema.Attribute.DynamicZone<['aside.aside-main']>;
-    content: Schema.Attribute.DynamicZone<['content.content-main']>;
+    content: Schema.Attribute.Blocks;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    header: Schema.Attribute.DynamicZone<['header.header-main']>;
+    description: Schema.Attribute.Text;
+    image: Schema.Attribute.Media<'images'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::info.info'> &
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::artigo.artigo'
+    > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -906,7 +910,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-      'api::info.info': ApiInfoInfo;
+      'api::artigo.artigo': ApiArtigoArtigo;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
